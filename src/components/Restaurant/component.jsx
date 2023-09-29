@@ -1,5 +1,5 @@
-import { Menu } from "../Menu/component"
-import { Reviews } from "../Reviews/component"
+import { Menu } from '../Menu/component';
+import { Reviews } from '../Reviews/component';
 
 export const Restaurant = ({ restaurant }) => {
     return (
