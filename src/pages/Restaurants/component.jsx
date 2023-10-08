@@ -9,10 +9,12 @@ import classNames from 'classnames';
 import styles from './styles.module.scss';
 import { Header } from '../../components/Header/component';
 import { Logo } from '../../components/Logo/component';
+import { Footer } from '../../components/Footer/component';
 
 export const Restaurants = () => {
     const [activeRestaurantIndex, setActiveRestaurantIndex] = useState(0);
     const { theme, setTheme } = useContext(ThemeContext);
+    const currentYear = new Date().getUTCFullYear();
 
     return (
         <div className={classNames(styles.root)} data-theme={theme}>
@@ -28,7 +30,13 @@ export const Restaurants = () => {
                 }>
             </Header>
 
-            <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
+            <div className={classNames(styles.content)}>
+                <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
+            </div>
+
+            <Footer className={classNames(styles.footer)}>
+                &copy; 2014 - {currentYear} DishDash. All Rights Reserved
+            </Footer>
         </div >
     );
 }
