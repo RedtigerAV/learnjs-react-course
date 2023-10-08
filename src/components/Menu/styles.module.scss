@@ -1,0 +1,22 @@
+.root {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    width: 100%;
+}
+
+.dish_card {
+    width: 100%;
+}
+
+.dish {
+    margin-bottom: 1rem;
+}
+
+.dish_order {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px dotted rgb(var(--bg-color-contrast));
+}
