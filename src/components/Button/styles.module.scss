@@ -1,0 +1,81 @@
+.button {
+    height: 3.6rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    border: 0;
+    letter-spacing: .09rem;
+    font-size: 1.6rem;
+    color: rgb(var(--text-color));
+}
+
+.button__basic,
+.button__flat {
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+}
+
+.button__basic {
+    background-color: transparent;
+
+    &:hover {
+        background-color: rgba(var(--element-bg-color), 0.15);
+    }
+
+    &:active {
+        background-color: rgba(var(--element-bg-color), 0.3);
+    }
+}
+
+.button__basic.button__primary {
+    color: rgb(var(--primary-color-contrast));
+}
+
+.button__flat {
+    color: rgb(var(--text-color));
+    background-color: rgb(var(--element-bg-color-contrast));
+
+    &:hover {
+        background-color: rgba(var(--element-bg-color), 0.15);
+    }
+
+    &:active {
+        background-color: rgba(var(--element-bg-color), 0.3);
+    }
+}
+
+.button__fab {
+    height: 3.6rem;
+    width: 3.6rem;
+    border-radius: 50%;
+    font-size: 2rem;
+    background-color: rgb(var(--element-bg-color-contrast));
+}
+
+.button__fab.button__primary,
+.button__flat.button__primary {
+    color: rgb(var(--text-color));
+    background-color: rgb(var(--primary-color));
+
+    &:hover {
+        background-color: rgba(var(--primary-color), 0.85);
+    }
+
+    &:active {
+        background-color: rgba(var(--primary-color), 0.7);
+    }
+}
+
+.button:disabled,
+.disabled {
+    color: rgb(var(--text-color-disabled));
+    cursor: not-allowed;
+    background-color: rgb(var(--element-bg-color-contrast));
+
+    &:hover {
+        background-color: rgb(var(--element-bg-color-contrast));
+    }
+}
