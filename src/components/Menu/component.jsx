@@ -4,9 +4,9 @@ import { Counter } from '../Counter/component';
 import { Dish } from '../Dish/component';
 import styles from './styles.module.scss';
 
-export const Menu = ({ menu }) => {
+export const Menu = ({ menu, className }) => {
     return (
-        <div className={classNames(styles.root)}>
+        <div className={classNames(className)}>
             {menu.map(dish => (
                 <Card className={classNames(styles.dish_card)} key={dish.id}>
                     <Dish dish={dish} className={classNames(styles.dish)} />

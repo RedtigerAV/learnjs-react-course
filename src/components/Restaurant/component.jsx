@@ -9,9 +9,9 @@ export const Restaurant = ({ restaurant }) => {
         <div className={classNames(styles.root)}>
             <h1>{restaurant.name}</h1>
             <h2>Menu</h2>
-            <Menu menu={restaurant.menu} />
+            <Menu className={classNames(styles.menu)} menu={restaurant.menu} />
             <h2>Reviews</h2>
-            <Reviews reviews={restaurant.reviews} />
+            <Reviews className={classNames(styles.reviews)} reviews={restaurant.reviews} />
             <h2>Leave a review</h2>
             <ReviewForm />
         </div>

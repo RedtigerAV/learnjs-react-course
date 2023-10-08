@@ -1,0 +1,27 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.header_name {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.header_rating {
+    font-size: 1.6rem;
+    font-style: italic;
+}
+
+.review {
+    font-size: 1.6rem;
+    font-style: italic;
+}
