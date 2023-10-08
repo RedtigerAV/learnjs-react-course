@@ -53,6 +53,14 @@
     border-radius: 50%;
     font-size: 2rem;
     background-color: rgb(var(--element-bg-color-contrast));
+
+    &:hover {
+        background-color: rgba(var(--element-bg-color), 0.15);
+    }
+
+    &:active {
+        background-color: rgba(var(--element-bg-color), 0.3);
+    }
 }
 
 .button__fab.button__primary,

@@ -3,3 +3,8 @@
     height: 100%;
     background-color: rgb(var(--bg-color));
 }
+
+.header {
+    position: sticky;
+    top: 0;
+}
