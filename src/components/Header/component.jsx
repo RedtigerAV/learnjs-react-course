@@ -1,12 +1,14 @@
 import classNames from "classnames"
 import styles from './styles.module.scss';
+import { Logo } from "../Logo/component";
+import { ThemeToggle } from "../ThemeToggle/component";
 
-export const Header = ({ logo, content, action, className }) => {
+export const Header = ({ children, className }) => {
     return (
         <div className={classNames(styles.root, className)}>
-            <div className={classNames(styles.logo)}>{logo}</div>
-            <div className={classNames(styles.content)}>{content}</div>
-            <div className={classNames(styles.action)}>{action}</div>
+            <div className={classNames(styles.logo)}> <Logo /> </div>
+            <div className={classNames(styles.content)}>{children}</div>
+            <div className={classNames(styles.action)}> <ThemeToggle /> </div>
         </div>
     )
 }
