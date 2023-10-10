@@ -1,15 +1,21 @@
+import classNames from 'classnames';
+import { Card } from '../Card/component';
 import { Counter } from '../Counter/component';
 import { Dish } from '../Dish/component';
+import styles from './styles.module.scss';
 
-export const Menu = ({ menu }) => {
+export const Menu = ({ menu, className }) => {
     return (
-        <ul>
+        <div className={classNames(className)}>
             {menu.map(dish => (
-                <li key={dish.id}>
-                    <Dish dish={dish} />
-                    <Counter min={0} max={5} />
-                </li>
+                <Card className={classNames(styles.dish_card)} key={dish.id}>
+                    <Dish dish={dish} className={classNames(styles.dish)} />
+                    <div className={classNames(styles.dish_order)}>
+                        <span>Price: ${dish.price}</span>
+                        <Counter min={0} max={5} />
+                    </div>
+                </Card>
             ))}
-        </ul>
+        </div>
     )
 }

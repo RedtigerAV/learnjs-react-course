@@ -1,8 +1,11 @@
-export const Dish = ({ dish }) => {
+import classNames from 'classnames';
+import styles from './styles.module.scss';
+
+export const Dish = ({ dish, className }) => {
     return (
-        <div>
-            <div>{dish.name} - <strong>${dish.price}</strong></div>
-            <i>Ingredients: {dish.ingredients.join(', ')}</i>
+        <div className={classNames(styles.root, className)}>
+            <span className={classNames(styles.name)}>{dish.name}</span>
+            <div className={classNames(styles.ingredients)}>{dish.ingredients.join(', ')}</div>
         </div>
     )
 }

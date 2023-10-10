@@ -1,15 +1,17 @@
 import ReactDOM from 'react-dom/client'
-import { Restaurants } from './pages/Restaurants/component';
+import { MainPage } from './pages/MainPage/component';
 import { ThemeProvider } from './contexts/Theme';
 
-import './styles/light-theme.scss';
-import './styles/dark-theme.scss';
+import './styles/index.scss';
+import { ActiveRestaurantIndexContextProvider } from './contexts/ActiveRestaurantIndex';
 
 const rootElement = document.getElementById('root');
 const root = ReactDOM.createRoot(rootElement);
 
 root.render(
     <ThemeProvider>
-        <Restaurants />
+        <ActiveRestaurantIndexContextProvider>
+            <MainPage />
+        </ActiveRestaurantIndexContextProvider>
     </ThemeProvider>
 );

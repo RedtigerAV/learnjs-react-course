@@ -86,7 +86,7 @@ export const ReviewForm = () => {
                 />
             </div>
 
-            <Button type="submit" title="Submit" disabled={!isFormValid()} />
+            <Button type="submit" appearance="flat" color="primary" title="Submit" disabled={!isFormValid()} />
         </form>
     )
 }

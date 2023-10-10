@@ -1,0 +1,16 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.name {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.ingredients {
+    font-size: 1.6rem;
+    font-style: italic;
+}
