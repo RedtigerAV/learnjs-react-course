@@ -1,9 +1,9 @@
-import classNames from "classnames"
+import classNames from 'classnames'
 import styles from './styles.module.scss';
-import { Footer } from "../Footer/component";
-import { Header } from "../Header/component";
-import { useContext } from "react";
-import { ThemeContext } from "../../contexts/Theme";
+import { Footer } from '../Footer/component';
+import { Header } from '../Header/component';
+import { useContext } from 'react';
+import { ThemeContext } from '../../contexts/Theme';
 
 export const Layout = ({ children }) => {
     const { theme } = useContext(ThemeContext);

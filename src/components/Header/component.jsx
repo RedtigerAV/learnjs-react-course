@@ -1,7 +1,7 @@
-import classNames from "classnames"
+import classNames from 'classnames'
 import styles from './styles.module.scss';
-import { Logo } from "../Logo/component";
-import { ThemeToggle } from "../ThemeToggle/component";
+import { Logo } from '../Logo/component';
+import { ThemeToggle } from '../ThemeToggle/component';
 
 export const Header = ({ children, className }) => {
     return (

@@ -5,10 +5,10 @@ export const Button = ({ title, disabled, type = 'button', appearance = 'basic',
     return (
         <button
             className={classNames(styles.button, className, {
-                [styles.button__basic]: appearance === 'basic',
-                [styles.button__flat]: appearance === 'flat',
-                [styles.button__fab]: appearance === 'fab',
-                [styles.button__primary]: color === 'primary',
+                [styles.buttonBasic]: appearance === 'basic',
+                [styles.buttonFlat]: appearance === 'flat',
+                [styles.buttonFab]: appearance === 'fab',
+                [styles.buttonPrimary]: color === 'primary',
                 [styles.disabled]: disabled,
             })}
             type={type}

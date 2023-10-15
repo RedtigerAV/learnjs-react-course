@@ -12,13 +12,13 @@
     color: rgb(var(--text-color));
 }
 
-.button__basic,
-.button__flat {
+.buttonBasic,
+.buttonFlat {
     padding: 0.5rem 1.5rem;
     border-radius: 4px;
 }
 
-.button__basic {
+.buttonBasic {
     background-color: transparent;
 
     &:hover {
@@ -30,11 +30,11 @@
     }
 }
 
-.button__basic.button__primary {
+.buttonBasic.buttonPrimary {
     color: rgb(var(--primary-color-contrast));
 }
 
-.button__flat {
+.buttonFlat {
     color: rgb(var(--text-color));
     background-color: rgb(var(--element-bg-color-contrast));
 
@@ -47,7 +47,7 @@
     }
 }
 
-.button__fab {
+.buttonFab {
     height: 3.6rem;
     width: 3.6rem;
     border-radius: 50%;
@@ -63,8 +63,8 @@
     }
 }
 
-.button__fab.button__primary,
-.button__flat.button__primary {
+.buttonFab.buttonPrimary,
+.buttonFlat.buttonPrimary {
     color: rgb(var(--text-color));
     background-color: rgb(var(--primary-color));
 
