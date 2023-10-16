@@ -5,9 +5,10 @@ import { useState } from 'react';
 import styles from './styles.module.scss';
 import classNames from 'classnames';
 import { useSelector } from 'react-redux';
+import { selectRestaurantIds } from '../../redux/entities/restaurants/selectors';
 
 export const MainPage = () => {
-    const restaurantIds = useSelector(state => state.restaurants.ids);
+    const restaurantIds = useSelector(selectRestaurantIds);
     const [activeRestaurantId, setActiveRestaurantId] = useState(restaurantIds[0]);
 
     return (
