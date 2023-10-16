@@ -1,19 +1,18 @@
-import classNames from "classnames";
-import { Button } from "../Button/component"
+import classNames from 'classnames';
 import styles from './styles.module.scss';
+import { RestaurantTab } from '../RestaurantTab/component';
 
-export const RestaurantTabs = ({ restaurants, activeRestaurantIndex, onRestaurantIndexSelected }) => {
+export const RestaurantTabs = ({ restaurantIds, activeRestaurantId, onRestaurantIdSelected }) => {
     return (
         <div className={classNames(styles.root)}>
             {
-                restaurants.map((restaurant, index) =>
-                    <Button
-                        key={restaurant.id}
-                        title={restaurant.name}
-                        appearance={activeRestaurantIndex === index ? 'flat' : 'basic'}
-                        color="primary"
-                        onClick={() => onRestaurantIndexSelected(index)}
-                    />)
+                restaurantIds.map((restaurantId) =>
+                    <RestaurantTab
+                        key={restaurantId}
+                        restaurantId={restaurantId}
+                        selected={activeRestaurantId === restaurantId}
+                        onSelect={() => onRestaurantIdSelected(restaurantId)} />
+                )
             }
         </div>
     )

@@ -1,5 +1,5 @@
-import { useReducer } from "react"
-import { Button } from "../Button/component";
+import { useReducer } from 'react'
+import { Button } from '../Button/component';
 
 const DEFAULT_FORM_VALUE = {
     userName: '',
@@ -53,7 +53,7 @@ export const ReviewForm = () => {
     const isFormValid = () => formValue.userName && formValue.rating && formValue.review;
 
     return (
-        <form onSubmit={() => dispatch({ type: 'submit' })}>
+        <form>
             <div>
                 <label>Your name</label>
                 <input
@@ -86,7 +86,7 @@ export const ReviewForm = () => {
                 />
             </div>
 
-            <Button type="submit" appearance="flat" color="primary" title="Submit" disabled={!isFormValid()} />
+            <Button appearance="flat" color="primary" title="Submit" disabled={!isFormValid()} onClick={() => dispatch({ type: 'submit' })} />
         </form>
     )
 }
