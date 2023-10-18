@@ -3,6 +3,10 @@ import styles from './styles.module.scss';
 import { UserContainer } from '../User/container';
 
 export const Review = ({ review, className }) => {
+    if (!review) {
+        return 'Loading...';
+    }
+
     return (
         <div className={classNames(styles.root, className)}>
             <div className={classNames(styles.header)}>

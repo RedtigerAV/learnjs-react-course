@@ -3,6 +3,7 @@ import { Restaurant } from './component';
 import { selectRestaurantById } from '../../redux/entities/restaurants/selectors';
 import { useEffect } from 'react';
 import { getDishesByRestaurantId } from '../../redux/entities/dishes/thunks/get-dishes-by-restaurant-id';
+import { getReviewsByRestaurantId } from '../../redux/entities/reviews/thunks/get-reviews-by-restaurant-id';
 
 export const RestaurantContainer = ({ restaurantId, ...props }) => {
     const restaurant = useSelector(state => selectRestaurantById(state, restaurantId));
@@ -10,9 +11,8 @@ export const RestaurantContainer = ({ restaurantId, ...props }) => {
 
     useEffect(() => {
         dispatch(getDishesByRestaurantId(restaurantId));
+        dispatch(getReviewsByRestaurantId(restaurantId));
     }, [restaurantId])
-
-    // TODO: load reviews by restaurantId
 
     return <Restaurant restaurant={restaurant} {...props} />;
 };
