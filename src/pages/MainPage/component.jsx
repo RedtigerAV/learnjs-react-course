@@ -27,10 +27,14 @@ export const MainPage = () => {
 
     return (
         <Layout>
-            {(restaurantsLoadingStatus === REQUEST_STATUS.pending || restaurantsLoadingStatus === REQUEST_STATUS.idle) && <div>Loading...</div>}
-
-            {restaurantsLoadingStatus === REQUEST_STATUS.rejected && <div style={{ color: 'var(--red-color)' }}>Something went wrong. Please refresh the page</div>}
-
+            {
+                (restaurantsLoadingStatus === REQUEST_STATUS.pending || restaurantsLoadingStatus === REQUEST_STATUS.idle) &&
+                <div className={classNames(styles.notification)}>Loading...</div>
+            }
+            {
+                restaurantsLoadingStatus === REQUEST_STATUS.rejected &&
+                <div className={classNames(styles.notification, styles.error)}>Something went wrong. Please refresh the page</div>
+            }
             {
                 activeRestaurantId &&
                 <div className={classNames(styles.root)}>
