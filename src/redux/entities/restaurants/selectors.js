@@ -1,5 +1,10 @@
+import { restaurantsEntityAdapter } from './entity-adapter';
+
 const selectRestaurantsModule = state => state.restaurants;
 
-export const selectRestaurantIds = state => selectRestaurantsModule(state).ids;
+export const selectRestaurantsLoadingStatus = state => selectRestaurantsModule(state).status;
 
-export const selectRestaurantById = (state, id) => selectRestaurantsModule(state).entities[id];
+export const {
+    selectIds: selectRestaurantIds,
+    selectById: selectRestaurantById
+} = restaurantsEntityAdapter.getSelectors(selectRestaurantsModule);

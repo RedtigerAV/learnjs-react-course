@@ -3,6 +3,7 @@ import restaurants from './entities/restaurants';
 import dishes from './entities/dishes';
 import reviews from './entities/reviews';
 import users from './entities/users';
+import { loggerMiddleware } from './middlewares/logger';
 
 export const store = configureStore({
     reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
         dishes,
         reviews,
         users
-    }
+    },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({}).concat(loggerMiddleware)
 });
