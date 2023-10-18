@@ -1,11 +1,7 @@
 import classNames from 'classnames';
 import { Counter } from '../Counter/component';
-import { useSelector } from 'react-redux';
-import { selectDishById } from '../../redux/entities/dishes/selectors';
 
-export const DishOrder = ({ dishId, className }) => {
-    const dish = useSelector(state => selectDishById(state, dishId));
-
+export const DishOrder = ({ dish, className }) => {
     return (
         <div className={classNames(className)}>
             <span>Price: ${dish.price}</span>

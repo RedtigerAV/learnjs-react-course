@@ -1,13 +1,13 @@
 import classNames from 'classnames';
 import styles from './styles.module.scss';
-import { RestaurantTab } from '../RestaurantTab/component';
+import { RestaurantTabContainer } from '../RestaurantTab/container';
 
 export const RestaurantTabs = ({ restaurantIds, activeRestaurantId, onRestaurantIdSelected }) => {
     return (
         <div className={classNames(styles.root)}>
             {
                 restaurantIds.map((restaurantId) =>
-                    <RestaurantTab
+                    <RestaurantTabContainer
                         key={restaurantId}
                         restaurantId={restaurantId}
                         selected={activeRestaurantId === restaurantId}

@@ -1,16 +1,12 @@
 import classNames from 'classnames';
 import styles from './styles.module.scss';
-import { useSelector } from 'react-redux';
-import { selectReviewById } from '../../redux/entities/reviews/selectors';
-import { User } from '../User/component';
+import { UserContainer } from '../User/container';
 
-export const Review = ({ reviewId, className }) => {
-    const review = useSelector(state => selectReviewById(state, reviewId));
-
+export const Review = ({ review, className }) => {
     return (
         <div className={classNames(styles.root, className)}>
             <div className={classNames(styles.header)}>
-                <User userId={review.userId} />
+                <UserContainer userId={review.userId} />
                 <span className={classNames(styles.headerRating)}>{review.rating} / 5</span>
             </div>
 
