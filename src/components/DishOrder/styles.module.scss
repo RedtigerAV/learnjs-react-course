@@ -1,0 +1,11 @@
+.dish {
+    margin-bottom: 1rem;
+}
+
+.dishCounter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px dotted rgb(var(--bg-color-contrast));
+}

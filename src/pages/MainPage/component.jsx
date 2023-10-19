@@ -1,25 +1,48 @@
-import { Restaurant } from '../../components/Restaurant/component';
 import { Layout } from '../../components/Layout/component';
-import { RestaurantTabs } from '../../components/RestaurantTabs/component';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 import classNames from 'classnames';
-import { useSelector } from 'react-redux';
-import { selectRestaurantIds } from '../../redux/entities/restaurants/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectRestaurantIds, selectRestaurantsLoadingStatus } from '../../redux/entities/restaurants/selectors';
+import { RestaurantTabsContainer } from '../../components/RestaurantTabs/container';
+import { RestaurantContainer } from '../../components/Restaurant/container';
+import { getRestaurants } from '../../redux/entities/restaurants/thunks/get-restaurants';
+import { REQUEST_STATUS } from '../../constants/request-status';
 
 export const MainPage = () => {
     const restaurantIds = useSelector(selectRestaurantIds);
-    const [activeRestaurantId, setActiveRestaurantId] = useState(restaurantIds[0]);
+    const restaurantsLoadingStatus = useSelector(selectRestaurantsLoadingStatus);
+    const [activeRestaurantId, setActiveRestaurantId] = useState();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getRestaurants());
+    }, []);
+
+    useEffect(() => {
+        if (restaurantIds?.length && restaurantsLoadingStatus === REQUEST_STATUS.fulfilled) {
+            setActiveRestaurantId(restaurantIds[0]);
+        }
+    }, [restaurantIds, restaurantsLoadingStatus]);
 
     return (
         <Layout>
-            <div className={classNames(styles.root)}>
-                <RestaurantTabs
-                    restaurantIds={restaurantIds}
-                    activeRestaurantId={activeRestaurantId}
-                    onRestaurantIdSelected={(id) => setActiveRestaurantId(id)} />
-                <Restaurant restaurantId={activeRestaurantId} />
-            </div>
+            {
+                (restaurantsLoadingStatus === REQUEST_STATUS.pending || restaurantsLoadingStatus === REQUEST_STATUS.idle) &&
+                <div className={classNames(styles.notification)}>Loading...</div>
+            }
+            {
+                restaurantsLoadingStatus === REQUEST_STATUS.rejected &&
+                <div className={classNames(styles.notification, styles.error)}>Something went wrong. Please refresh the page</div>
+            }
+            {
+                activeRestaurantId &&
+                <div className={classNames(styles.root)}>
+                    <RestaurantTabsContainer activeRestaurantId={activeRestaurantId} onRestaurantIdSelected={(id) => setActiveRestaurantId(id)} />
+
+                    <RestaurantContainer restaurantId={activeRestaurantId} />
+                </div>
+            }
         </Layout>
     );
 }

@@ -4,3 +4,12 @@
     align-items: center;
     width: 100%;
 }
+
+.notification {
+    width: 100%;
+    text-align: center;
+}
+
+.error {
+    color: rgb(var(--red-color));
+}

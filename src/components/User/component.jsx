@@ -1,12 +1,10 @@
-import { useSelector } from 'react-redux';
-import { selectUserById } from '../../redux/entities/users/selectors';
 import classNames from 'classnames';
 import styles from './styles.module.scss';
 
-export const User = ({ userId }) => {
-    const user = useSelector(state => selectUserById(state, userId));
+export const User = ({ user }) => {
+    if (!user) {
+        return null;
+    }
 
-    return (
-        <span className={classNames(styles.userName)}>{user.name}</span>
-    )
+    return <span className={classNames(styles.userName)}>{user.name}</span>;
 };

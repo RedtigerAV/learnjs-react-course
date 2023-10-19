@@ -1,10 +1,10 @@
 import classNames from 'classnames';
 import styles from './styles.module.scss';
-import { useSelector } from 'react-redux';
-import { selectDishById } from '../../redux/entities/dishes/selectors';
 
-export const Dish = ({ dishId, className }) => {
-    const dish = useSelector(state => selectDishById(state, dishId));
+export const Dish = ({ dish, className }) => {
+    if (!dish) {
+        return null;
+    }
 
     return (
         <div className={classNames(styles.root, className)}>

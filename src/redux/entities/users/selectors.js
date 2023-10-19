@@ -1,3 +1,7 @@
+import { usersEntityAdapter } from './entity-adapter';
+
 const selectUsersModule = (state) => state.users;
 
-export const selectUserById = (state, id) => selectUsersModule(state).entities[id];
+export const selectUsersLoadingStatus = (state) => selectUsersModule(state).status;
+
+export const { selectById: selectUserById, selectIds: selectUserIds } = usersEntityAdapter.getSelectors(selectUsersModule);
