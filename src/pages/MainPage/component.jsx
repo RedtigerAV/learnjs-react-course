@@ -9,6 +9,7 @@ import { RestaurantContainer } from '../../components/Restaurant/container';
 import { getRestaurants } from '../../redux/entities/restaurants/thunks/get-restaurants';
 import { REQUEST_STATUS } from '../../constants/request-status';
 import { useRequest } from '../../hooks/use-request';
+import { CartContainer } from '../../components/Cart/container';
 
 export const MainPage = () => {
     const restaurantIds = useSelector(selectRestaurantIds);
@@ -23,6 +24,7 @@ export const MainPage = () => {
 
     return (
         <Layout>
+            <CartContainer />
             {
                 (restaurantsLoadingStatus === REQUEST_STATUS.pending || restaurantsLoadingStatus === REQUEST_STATUS.idle) &&
                 <div className={classNames(styles.notification)}>Loading...</div>

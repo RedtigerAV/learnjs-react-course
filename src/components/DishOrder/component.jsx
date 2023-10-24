@@ -1,6 +1,6 @@
 import { Dish } from '../Dish/component';
 import styles from './styles.module.scss';
-import { DishCounter } from '../DishCounter/component';
+import { DishCounterContainer } from '../DishCounter/container';
 
 export const DishOrder = ({ dish, className }) => {
     if (!dish) {
@@ -10,7 +10,7 @@ export const DishOrder = ({ dish, className }) => {
     return (
         <div className={className}>
             <Dish dish={dish} className={styles.dish} />
-            <DishCounter dish={dish} className={styles.dishCounter} />
+            <DishCounterContainer dish={dish} className={styles.dishCounter} />
         </div>
     )
 };
