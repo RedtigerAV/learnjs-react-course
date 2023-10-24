@@ -1,14 +1,9 @@
-import { useDispatch } from 'react-redux';
 import { Reviews } from './component';
-import { useEffect } from 'react';
 import { getUsers } from '../../redux/entities/users/thunks/get-users';
+import { useRequest } from '../../hooks/use-request';
 
 export const ReviewsContainer = (props) => {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getUsers());
-    }, []);
+    useRequest(getUsers);
 
     return <Reviews {...props} />;
 };

@@ -2,22 +2,18 @@ import { Layout } from '../../components/Layout/component';
 import { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 import classNames from 'classnames';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectRestaurantIds, selectRestaurantsLoadingStatus } from '../../redux/entities/restaurants/selectors';
+import { useSelector } from 'react-redux';
+import { selectRestaurantIds } from '../../redux/entities/restaurants/selectors';
 import { RestaurantTabsContainer } from '../../components/RestaurantTabs/container';
 import { RestaurantContainer } from '../../components/Restaurant/container';
 import { getRestaurants } from '../../redux/entities/restaurants/thunks/get-restaurants';
 import { REQUEST_STATUS } from '../../constants/request-status';
+import { useRequest } from '../../hooks/use-request';
 
 export const MainPage = () => {
     const restaurantIds = useSelector(selectRestaurantIds);
-    const restaurantsLoadingStatus = useSelector(selectRestaurantsLoadingStatus);
+    const restaurantsLoadingStatus = useRequest(getRestaurants);
     const [activeRestaurantId, setActiveRestaurantId] = useState();
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getRestaurants());
-    }, []);
 
     useEffect(() => {
         if (restaurantIds?.length && restaurantsLoadingStatus === REQUEST_STATUS.fulfilled) {
