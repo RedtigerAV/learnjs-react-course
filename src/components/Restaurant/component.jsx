@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import { Menu } from '../Menu/component';
-import { ReviewForm } from '../ReviewForm/component';
 import styles from './styles.module.scss';
 import { ReviewsContainer } from '../Reviews/container';
+import { ReviewFormContainer } from '../ReviewForm/container';
 
 export const Restaurant = ({ restaurant }) => {
     return (
@@ -13,7 +13,7 @@ export const Restaurant = ({ restaurant }) => {
             <h2>Reviews</h2>
             <ReviewsContainer className={classNames(styles.reviews)} reviewIds={restaurant.reviews} />
             <h2>Leave a review</h2>
-            <ReviewForm />
+            <ReviewFormContainer restaurantId={restaurant.id} />
         </div>
     )
 }
