@@ -9,5 +9,5 @@ export const RestaurantTabContainer = ({ restaurantId, ...props }) => {
         })
     });
 
-    return <RestaurantTab name={restaurant.name} {...props} />
+    return <RestaurantTab restaurantId={restaurantId} name={restaurant.name} {...props} />
 };
