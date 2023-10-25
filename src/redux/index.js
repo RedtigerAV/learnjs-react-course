@@ -1,20 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import restaurants from './entities/restaurants';
-import dishes from './entities/dishes';
-import reviews from './entities/reviews';
-import users from './entities/users';
-import requests from './ui/requests';
 import cart from './ui/cart';
 import { loggerMiddleware } from './middlewares/logger';
+import { api } from './services/api';
 
 export const store = configureStore({
     reducer: {
-        restaurants,
-        dishes,
-        reviews,
-        users,
-        requests,
-        cart
+        cart,
+        [api.reducerPath]: api.reducer
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware({}).concat(loggerMiddleware)
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({}).concat(api.middleware, loggerMiddleware),
 });

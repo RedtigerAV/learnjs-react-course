@@ -1,9 +1,14 @@
-import { useSelector } from 'react-redux';
+import { useGetRestaurantsQuery } from '../../redux/services/restaurant-api';
 import { RestaurantTabs } from './component';
-import { selectRestaurantIds } from '../../redux/entities/restaurants/selectors';
+
 
 export const RestaurantTabsContainer = (props) => {
-    const restaurantIds = useSelector(selectRestaurantIds);
+    const { restaurantIds } = useGetRestaurantsQuery(undefined, {
+        selectFromResult: (result) => ({
+            ...result,
+            restaurantIds: result.data?.map((restaurant) => restaurant.id)
+        })
+    });
 
     return <RestaurantTabs {...props} restaurantIds={restaurantIds} />;
 };

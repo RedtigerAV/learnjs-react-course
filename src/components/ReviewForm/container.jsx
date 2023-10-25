@@ -1,22 +1,26 @@
 import { ReviewForm } from './component';
-import { useMakeRequest } from '../../hooks/use-make-request';
-import { postReview } from '../../redux/entities/reviews/thunks/post-review';
 import { useEffect } from 'react';
 import { REQUEST_STATUS } from '../../constants/request-status';
+import { useCreateReviewMutation } from '../../redux/services/review-api';
 
 // Using mock userId from mock.js because we don't have authorization yet and we don't create users on server
 const MOCK_USER_ID = 'a304959a-76c0-4b34-954a-b38dbf310360';
 
 export const ReviewFormContainer = ({ restaurantId }) => {
-    const [submissionStatus, createReview] = useMakeRequest(postReview);
+    const [createReview, { isLoading, isSuccess, isError }] = useCreateReviewMutation();
+    const submissionStatus = isLoading
+        ? REQUEST_STATUS.pending
+        : isSuccess
+            ? REQUEST_STATUS.fulfilled
+            : REQUEST_STATUS.idle;
 
     useEffect(() => {
-        if (submissionStatus === REQUEST_STATUS.fulfilled) {
+        if (isSuccess) {
             alert('Review has been submitted');
-        } else if (submissionStatus === REQUEST_STATUS.rejected) {
+        } else if (isError) {
             alert('Something went wrong. Please try again later');
         }
-    }, [submissionStatus])
+    }, [isSuccess, isError])
 
     return <ReviewForm submissionStatus={submissionStatus} onSubmit={(form) => createReview({
         restaurantId,
