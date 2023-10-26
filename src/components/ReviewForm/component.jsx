@@ -1,9 +1,10 @@
 import { useReducer } from 'react'
 import { Button } from '../Button/component';
+import { REQUEST_STATUS } from '../../constants/request-status';
+import { useEffect } from 'react';
 
 const DEFAULT_FORM_VALUE = {
-    userName: '',
-    review: '',
+    text: '',
     rating: 1
 }
 
@@ -14,10 +15,8 @@ const reducer = (state, action) => {
     console.log(action);
 
     switch (action.type) {
-        case 'setUserName':
-            return { ...state, userName: action.payload };
         case 'setReview':
-            return { ...state, review: action.payload };
+            return { ...state, text: action.payload };
         case 'setRating': {
             const isNaN = Number.isNaN(+action.payload);
             const notInteger = !Number.isInteger(+action.payload);
@@ -38,38 +37,33 @@ const reducer = (state, action) => {
 
             return { ...state, rating: +action.payload };
         }
-        case 'submit':
-            alert('Review has been submitted');
-
+        case 'clear':
             return { ...DEFAULT_FORM_VALUE };
         default:
             return state;
     }
 }
 
-export const ReviewForm = () => {
+export const ReviewForm = ({ submissionStatus, onSubmit }) => {
     const [formValue, dispatch] = useReducer(reducer, DEFAULT_FORM_VALUE);
 
-    const isFormValid = () => formValue.userName && formValue.rating && formValue.review;
+    const isFormValid = () => formValue.rating && formValue.text;
+
+    useEffect(() => {
+        if (submissionStatus === REQUEST_STATUS.fulfilled) {
+            dispatch({ type: 'clear' });
+        }
+    }, [submissionStatus])
 
     return (
         <form>
-            <div>
-                <label>Your name</label>
-                <input
-                    required
-                    placeholder="Enter your name"
-                    value={formValue.userName}
-                    onChange={(event) => dispatch({ type: 'setUserName', payload: event.target.value })}
-                />
-            </div>
             <div>
                 <label>Review</label>
                 <textarea
                     required
                     rows="5"
                     placeholder="Leave a review"
-                    value={formValue.review}
+                    value={formValue.text}
                     onChange={(event) => dispatch({ type: 'setReview', payload: event.target.value })}
                 />
             </div>
@@ -86,7 +80,11 @@ export const ReviewForm = () => {
                 />
             </div>
 
-            <Button appearance="flat" color="primary" title="Submit" disabled={!isFormValid()} onClick={() => dispatch({ type: 'submit' })} />
+            {
+                submissionStatus === REQUEST_STATUS.pending
+                    ? <div>Submitting...</div>
+                    : <Button appearance="flat" color="primary" title="Submit" disabled={!isFormValid()} onClick={() => onSubmit(formValue)} />
+            }
         </form>
     )
 }
