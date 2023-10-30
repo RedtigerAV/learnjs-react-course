@@ -1,6 +1,6 @@
 import { selectDishesEntities } from '../../entities/dishes/selectors';
 
-const selectCartModule = state => state.cart;
+export const selectCartModule = state => state.cart;
 
 export const selectDishQuantityById = (state, dishId) => selectCartModule(state)[dishId] || 0;
 

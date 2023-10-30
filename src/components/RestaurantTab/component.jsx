@@ -1,12 +1,16 @@
+import { NavLink } from 'react-router-dom';
 import { Button } from '../Button/component';
 
-export const RestaurantTab = ({ name, selected, onSelect }) => {
+export const RestaurantTab = ({ restaurantId, name }) => {
     return (
-        <Button
-            title={name}
-            appearance={selected ? 'flat' : 'basic'}
-            color="primary"
-            onClick={() => onSelect()}
-        />
+        <NavLink to={restaurantId}>
+            {({ isActive }) => (
+                <Button
+                    title={name}
+                    appearance={isActive ? 'flat' : 'basic'}
+                    color="primary"
+                />
+            )}
+        </NavLink>
     )
 };

@@ -1,9 +1,17 @@
 import { Reviews } from './component';
-import { getUsers } from '../../redux/entities/users/thunks/get-users';
-import { useRequest } from '../../hooks/use-request';
+import { useGetReviewsQuery } from '../../redux/services/review-api';
 
-export const ReviewsContainer = (props) => {
-    useRequest(getUsers);
+export const ReviewsContainer = ({ restaurantId, ...props }) => {
+    const { data: reviews, isFetching, isError } = useGetReviewsQuery(restaurantId);
 
-    return <Reviews {...props} />;
+    if (isFetching) {
+        return <div>Loading...</div>;
+    }
+
+    if (isError) {
+        return <div>Something went wrong. Please refresh the page</div>;
+    }
+
+
+    return <Reviews reviews={reviews} {...props} />;
 };
