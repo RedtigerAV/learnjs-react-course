@@ -20,7 +20,7 @@ export const MainPageContainer = () => {
         const selectedRestaurantExists = restaurants.some((restaurant) => restaurant.id === activeRestaurantId.current);
 
         if (restaurantSelected === false) {
-            navigate(`/${restaurants[0].id}`);
+            navigate(`./${restaurants[0].id}`);
         } else if (selectedRestaurantExists === false) {
             navigate('/not-found');
         }
